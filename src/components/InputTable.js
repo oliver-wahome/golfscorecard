@@ -13,11 +13,11 @@ const CardSection = React.forwardRef((props, ref) =>(
 
             <div className="d-flex justify-content-center align-items-end">
                 {/* <h4 style={{padding: "7px", margin: "10px 5px", fontWeight: "700"}}>Colour Key : </h4> */}
-                <p style={{backgroundColor: "red", padding: "3px", margin: "10px 5px"}}>Eagle or less</p>
-                <p style={{backgroundColor: "orange", padding: "3px", margin: "10px 5px"}}>Birdie</p>
+                <p style={{backgroundColor: "#ff4d4d", padding: "3px", margin: "10px 5px"}}>Eagle or &lt;</p>
+                <p style={{backgroundColor: "#ff9900", padding: "3px", margin: "10px 5px"}}>Birdie</p>
                 <p style={{backgroundColor: "yellow", padding: "3px", margin: "10px 5px"}}>Par</p>
-                <p style={{backgroundColor: "blue", padding: "3px", margin: "10px 5px"}}>Bogey</p>
-                <p style={{backgroundColor: "grey", padding: "3px", margin: "10px 5px"}}>Double Bogey or more</p>
+                <p style={{backgroundColor: "#85cdfd", padding: "3px", margin: "10px 5px"}}>Bogey</p>
+                <p style={{backgroundColor: "#d6d6c2", padding: "3px", margin: "10px 5px"}}>D. Bogey or &gt;</p>
             </div>
         </div>
         <div id="tableID" className="table-responsive">
@@ -67,13 +67,13 @@ let inputCellStyle = {
 function checkScore(parScore, playerScore, inputCellId){
     var scoreCalc = playerScore - parScore;
 
-    if(scoreCalc <= -2){
+    if(scoreCalc <= -2 && scoreCalc > (parScore*-1)){
         //console.log("red eagle");
-        document.getElementById(inputCellId).style.backgroundColor = "red";
+        document.getElementById(inputCellId).style.backgroundColor = "#ff4d4d";
     }
     else if(scoreCalc === -1){
         //console.log("orange birdie");
-        document.getElementById(inputCellId).style.backgroundColor = "orange";
+        document.getElementById(inputCellId).style.backgroundColor = "#ff9900";
     }
     else if(scoreCalc === 0){
         //console.log("yellow par ");
@@ -81,11 +81,11 @@ function checkScore(parScore, playerScore, inputCellId){
     }
     else if(scoreCalc === 1){
         //console.log("blue bogey");
-        document.getElementById(inputCellId).style.backgroundColor = "blue";
+        document.getElementById(inputCellId).style.backgroundColor = "#85CDFD";
     }
     else if(scoreCalc >= 2){
         //console.log("grey double bogey or higher");
-        document.getElementById(inputCellId).style.backgroundColor = "grey";
+        document.getElementById(inputCellId).style.backgroundColor = "#d6d6c2";
     }
     else {
         //console.log("transparent");
