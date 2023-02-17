@@ -171,10 +171,13 @@ class inputForm extends Component{
                         {/* button group to select number of players on card*/}
                         <div className="col-sm-8 px-2">
                             <div className="btn-group" role="group" aria-label="playerNumGroup">
-                                <button className="btn btn-dark" type="button" onClick={()=>{this.setPlayers(1)}}>1</button>
+                                {[1, 2, 3, 4, 5, 6, 7, 8].map((e, i) => (
+                                    <button key={i} className="btn btn-dark" type="button" onClick={()=>{this.setPlayers({e})}}>{e}</button>
+                                ))}
+                                {/* <button className="btn btn-dark" type="button" onClick={()=>{this.setPlayers(1)}}>1</button>
                                 <button className="btn btn-dark" type="button" onClick={()=>{this.setPlayers(2)}}>2</button>
                                 <button className="btn btn-dark" type="button" onClick={()=>{this.setPlayers(3)}}>3</button>
-                                <button className="btn btn-dark" type="button" onClick={()=>{this.setPlayers(4)}}>4</button>
+                                <button className="btn btn-dark" type="button" onClick={()=>{this.setPlayers(4)}}>4</button> */}
                             </div>
                         </div>
                     </div>
