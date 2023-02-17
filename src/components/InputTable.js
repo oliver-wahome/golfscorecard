@@ -9,15 +9,15 @@ const CardSection = React.forwardRef((props, ref) =>(
                 <strong>{ props.cardOptions.name.split(" ")[0] } {props.event+" "+props.scoringSystem} Format</strong>
             </h5>
 
-            <p>{props.eventDate}</p>
+            <p className="m-2">{props.eventDate}</p>
 
-            <div className="d-flex justify-content-center align-items-end">
+            <div className="p-0 m-0 d-flex justify-content-between">
                 {/* <h4 style={{padding: "7px", margin: "10px 5px", fontWeight: "700"}}>Colour Key : </h4> */}
-                <p style={{backgroundColor: "#ff4d4d", padding: "3px", margin: "10px 5px"}}>Eagle or &lt;</p>
-                <p style={{backgroundColor: "#ff9900", padding: "3px", margin: "10px 5px"}}>Birdie</p>
-                <p style={{backgroundColor: "yellow", padding: "3px", margin: "10px 5px"}}>Par</p>
-                <p style={{backgroundColor: "#85cdfd", padding: "3px", margin: "10px 5px"}}>Bogey</p>
-                <p style={{backgroundColor: "#d6d6c2", padding: "3px", margin: "10px 5px"}}>D. Bogey or &gt;</p>
+                <p style={{backgroundColor: "#ff4d4d", padding: "5px", margin: "5px 0"}}>Eagle or &lt;</p>
+                <p style={{backgroundColor: "#ff9900", padding: "5px", margin: "5px 0"}}>Birdie</p>
+                <p style={{backgroundColor: "yellow", padding: "5px", margin: "5px 0"}}>Par</p>
+                <p style={{backgroundColor: "#85cdfd", padding: "5px", margin: "5px 0"}}>Bogey</p>
+                <p style={{backgroundColor: "#d6d6c2", padding: "5px", margin: "5px 0"}}>D. Bogey or &gt;</p>
             </div>
         </div>
         <div id="tableID" className="table-responsive">
@@ -42,7 +42,7 @@ const CardSection = React.forwardRef((props, ref) =>(
                 </thead>
                 <tbody>
                     {[...Array(22)].map((e, i) => (
-                        <tr key={i} className={"text-center "+rowColour(i)}>
+                        <tr key={i} className={"text-center"} style={{backgroundColor: rowColour(i)}}>
                             <th scope="row">{props.cardOptions.holeColumn[i]}</th>
                             <td className="text-center">{props.cardOptions.siColumn[i]}</td>
                             <td>{props.cardOptions.parColumn[i]}</td>
@@ -58,7 +58,7 @@ const CardSection = React.forwardRef((props, ref) =>(
 ));
 
 let inputCellStyle = {
-    width: "70px", 
+    width: "40px", 
     border:"none", 
     borderBottom:"3px solid black", 
     textAlign:"center"
@@ -200,10 +200,10 @@ function handleScoreChange(i, j, players, strokeIndex, par, scoreSystem){
 //the sets colours for certain rows
 function rowColour(x){
     if(x===9 || x===19 || x===20){
-        return "table-info";
+        return "#b3ffcc";
     }
     else if(x===21){
-        return "table-primary";
+        return "#b3e6ff";
     }
     else{
         return "";
