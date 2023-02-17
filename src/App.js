@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import GenericTable from './components/GenericTable';
+import InputForm from './components/inputForm';
+import InputTable from './components/InputTable';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+      playerNum: 0,
+      players: [],
+      scoringSystem: "",
+      tournament: "",
+    }
+  }
+
+  render(){
+
+    const eventhandler = (data) =>{
+      this.setState({playerNum: data.playerNum, players: data.players, scoringSystem: data.scoringSystem, tournament: data.tournament});
+    }
+
+
+    return(
+      <BrowserRouter>
+        <Switch>
+          {/*Route to input form*/}
+          <Route exact path='/'>
+            <InputForm onSubmit={eventhandler}/>
+          </Route>
+
+          {/*Route to Machakos Golf Club Card*/}
+          <Route path='/inputTable'>
+            <InputTable playerNum={this.state.playerNum} players={this.state.players} scoringSystem={this.state.scoringSystem} tournament={this.state.tournament} />
+          </Route>
+
+          {/*Route to Generic Card*/}
+          <Route path='/genericTable'>
+            <GenericTable playerNum={this.state.playerNum} players={this.state.players} tournament={this.state.tournament} />
+          </Route>
+
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
