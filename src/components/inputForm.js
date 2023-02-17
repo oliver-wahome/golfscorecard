@@ -53,6 +53,13 @@ class inputForm extends Component{
         });
     }
 
+    setCard(cardName){
+        this.setState({cardOptions: cardName}, ()=>{
+            localStorage.set("cardOptions", cardName);
+        });
+    }
+
+
     handleSubmit(e){
         e.preventDefault();
         let pNum = this.state.playerNum;
@@ -96,16 +103,16 @@ class inputForm extends Component{
         }
 
         //setting value for cardOptions in localStorage
-        if(document.getElementById("genericRadio").checked){
-            this.setState({cardOptions: "Generic"}, ()=>{
-                localStorage.set("cardOptions", "Generic");
-            });
-        }
-        else if(document.getElementById("machakosRadio").checked){
-            this.setState({cardOptions: "Machakos"}, ()=>{
-                localStorage.set("cardOptions", "Machakos");
-            });            
-        }else;
+        // if(document.getElementById("genericRadio").checked){
+        //     this.setState({cardOptions: "Generic"}, ()=>{
+        //         localStorage.set("cardOptions", "Generic");
+        //     });
+        // }
+        // else if(document.getElementById("machakosRadio").checked){
+        //     this.setState({cardOptions: "Machakos"}, ()=>{
+        //         localStorage.set("cardOptions", "Machakos");
+        //     });            
+        // }else;
 
         //setting value for scoringSystem in localStorage
         if(e.target.radio1.checked){
@@ -151,15 +158,26 @@ class inputForm extends Component{
 
                     {/*Card Type or Location section */}
                     <div className="row my-2 align-items-center">
-                        <div className="col-sm-4">
-                            <p><strong>Select Card:</strong></p>
+                    <div className="col-sm-4">
+                            <div className="dropdown">
+                                <button className="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Select Card
+                                </button>
+                                <ul className="dropdown-menu">
+                                    {["Generic Card", "Machakos Golf Club Card", "Limuru Country Club Card"].map((e, i) => (
+                                        <li key={i} num={i}><button className="dropdown-item" key={i} num={i} onClick={()=>{this.setCard(e)}}>{e}</button></li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
-                        <div className="col-sm-8 btn-group" role="group" aria-label="radio toggle">
-                            <input type="radio" className="btn-check" name="radio" id="genericRadio" autoComplete="off" required/>
+                        <div className="col-sm-8">
+                            {/* <input type="radio" className="btn-check" name="radio" id="genericRadio" autoComplete="off" required/>
                             <label className="btn btn-outline-dark" htmlFor="genericRadio">Generic Card</label>
 
                             <input type="radio" className="btn-check" name="radio" id="machakosRadio" autoComplete="off" required/>
-                            <label className="btn btn-outline-dark" htmlFor="machakosRadio">Machakos Golf Club Card</label>
+                            <label className="btn btn-outline-dark" htmlFor="machakosRadio">Machakos Golf Club Card</label> */}
+
+                            {this.state.cardOptions}
                         </div>
                     </div>
 
@@ -167,9 +185,20 @@ class inputForm extends Component{
 
                     {/* Player Number input section */}
                     <div className="row my-2 align-items-center">
-                        <label htmlFor="staticEmail" className="col-sm-4"><strong>Select the number of players :</strong></label>
+                        <div className="col-sm-4">
+                            <div className="dropdown">
+                                <button className="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Select the number of players
+                                </button>
+                                <ul className="dropdown-menu">
+                                    {[1, 2, 3, 4, 5, 6, 7, 8].map((e, i) => (
+                                        <li key={i} num={i}><button className="dropdown-item text-center" key={i} num={i} onClick={()=>{this.setPlayers(e)}}>{e}</button></li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
                         {/* button group to select number of players on card*/}
-                        <div className="col-sm-8 px-2">
+                        {/* <div className="col-sm-8 px-2">
                             <div className="dropdown">
                                 <button className="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     players
@@ -180,7 +209,7 @@ class inputForm extends Component{
                                     ))}
                                 </ul>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                     
                     {/* Player name and handicap input. 
