@@ -53,6 +53,7 @@ class inputForm extends Component{
         });
     }
 
+    //set value for cardOptions in localStorage and state
     setCard(cardName){
         this.setState({cardOptions: cardName}, ()=>{
             localStorage.set("cardOptions", cardName);
@@ -129,13 +130,13 @@ class inputForm extends Component{
         //setting value for tournament in localStorage
         this.setState({tournament: eventName}, () =>{
             localStorage.set("tournament", eventName);
-            if(document.getElementById("machakosRadio").checked){
+            if(this.state.cardOptions !== "Generic Card"){
                 this.props.history.push('/inputTable');
             }
-            else if(document.getElementById("genericRadio").checked){
+            else if(this.state.cardOptions === "Generic Card"){
                 this.props.history.push('/genericTable');
             }
-            //console.log("State: ", this.state);
+            
             if(this.props.onSubmit){
                 this.props.onSubmit(this.state);
             }
@@ -160,12 +161,12 @@ class inputForm extends Component{
                     <div className="row my-2 align-items-center">
                     <div className="col-sm-4">
                             <div className="dropdown">
-                                <button className="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button type="button" className="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     Select Card
                                 </button>
                                 <ul className="dropdown-menu">
                                     {["Generic Card", "Machakos Golf Club Card", "Limuru Country Club Card"].map((e, i) => (
-                                        <li key={i} num={i}><button className="dropdown-item" key={i} num={i} onClick={()=>{this.setCard(e)}}>{e}</button></li>
+                                        <li key={i}><button type="button" className="dropdown-item" style={{cursor: "pointer"}} onClick={()=>{this.setCard(e)}}>{e}</button></li>
                                     ))}
                                 </ul>
                             </div>
@@ -187,29 +188,16 @@ class inputForm extends Component{
                     <div className="row my-2 align-items-center">
                         <div className="col-sm-4">
                             <div className="dropdown">
-                                <button className="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button type="button" className="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     Select the number of players
                                 </button>
                                 <ul className="dropdown-menu">
                                     {[1, 2, 3, 4, 5, 6, 7, 8].map((e, i) => (
-                                        <li key={i} num={i}><button className="dropdown-item text-center" key={i} num={i} onClick={()=>{this.setPlayers(e)}}>{e}</button></li>
+                                        <li key={i} num={i}><button type="button" className="dropdown-item text-center" style={{cursor: "pointer"}} key={i} num={i} onClick={()=>{this.setPlayers(e)}}>{e}</button></li>
                                     ))}
                                 </ul>
                             </div>
                         </div>
-                        {/* button group to select number of players on card*/}
-                        {/* <div className="col-sm-8 px-2">
-                            <div className="dropdown">
-                                <button className="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    players
-                                </button>
-                                <ul className="dropdown-menu">
-                                    {[1, 2, 3, 4, 5, 6, 7, 8].map((e, i) => (
-                                        <li key={e} num={e}><button className="dropdown-item" key={e} num={e} onClick={()=>{this.setPlayers(e)}}>{e}</button></li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div> */}
                     </div>
                     
                     {/* Player name and handicap input. 

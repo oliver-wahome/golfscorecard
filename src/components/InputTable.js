@@ -6,8 +6,9 @@ const CardSection = React.forwardRef((props, ref) =>(
     <div id="scorecard" ref={ref}>
         <div className="text-center">
             <h5>
-                <strong>Machakos {props.event+" "+props.scoringSystem} Format</strong>
+                <strong>{props.cardOptions.split(" ")[0]} {props.event+" "+props.scoringSystem} Format</strong>
             </h5>
+            
             <p>{props.eventDate}</p>
         </div>
         <div id="tableID" className="table-responsive">
@@ -34,10 +35,10 @@ const CardSection = React.forwardRef((props, ref) =>(
                     {[...Array(22)].map((e, i) => (
                         <tr key={i} className={"text-center "+rowColour(i)}>
                             <th scope="row">{props.holeColumn[i]}</th>
-                            <td className="text-center">{props.si_Column[i]}</td>
+                            <td className="text-center">{props.siColumn[i]}</td>
                             <td>{props.parColumn[i]}</td>
                             {[...Array(props.playerNum*2)].map((e, j) => (
-                                rowOutput(i, j, props.players, props.si_Column[i], props.parColumn[i], props.scoringSystem)
+                                rowOutput(i, j, props.players, props.siColumn[i], props.parColumn[i], props.scoringSystem)
                             ))}
                         </tr>
                     ))}
@@ -211,7 +212,7 @@ function rowOutput(i, j, players, strokeIndex, par, scoreSystem){
 //the main functional component for inputTable
 function InputTable(props){
     const componentRef = useRef();
-    const {playerNum, players, scoringSystem, tournament} = props;
+    const {cardOptions, playerNum, players, scoringSystem, tournament} = props;
     
 
     //make all the words in tournament begin with capital letter.
@@ -225,15 +226,15 @@ function InputTable(props){
     var eventDate = nDate.toDateString();
     var holeColumn = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "OUT",
                      "10", "11", "12", "13", "14", "15", "16", "17", "18", "IN", "OUT", "TOTAL"];
-    var si_Column = ["9", "17", "7", "5", "13", "3", "1", "11", "15", "",
+    var siColumn = ["9", "17", "7", "5", "13", "3", "1", "11", "15", "",
                      "12", "18", "8", "6", "14", "4", "2", "10", "16", "", "", ""];
     var parColumn = ["5", "3", "4", "4", "4", "4", "4", "3", "5", "36",
                      "5", "3", "4", "4", "4", "4", "4", "3", "5", "36", "36", "72"];
     return(
         <div className="p-4">
             <CardSection 
-                event={event} scoringSystem={scoringSystem} eventDate={eventDate} ref={componentRef} 
-                playerNum={playerNum} players={players} holeColumn={holeColumn} si_Column={si_Column}
+                cardOptions={cardOptions} event={event} scoringSystem={scoringSystem} eventDate={eventDate} ref={componentRef} 
+                playerNum={playerNum} players={players} holeColumn={holeColumn} siColumn={siColumn}
                 parColumn={parColumn}
             />
             

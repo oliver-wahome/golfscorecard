@@ -8,6 +8,7 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state={
+      cardOptions: "",
       playerNum: 0,
       players: [],
       scoringSystem: "",
@@ -18,7 +19,7 @@ class App extends Component{
   render(){
 
     const eventhandler = (data) =>{
-      this.setState({playerNum: data.playerNum, players: data.players, scoringSystem: data.scoringSystem, tournament: data.tournament});
+      this.setState({cardOptions: data.cardOptions, playerNum: data.playerNum, players: data.players, scoringSystem: data.scoringSystem, tournament: data.tournament});
     }
 
 
@@ -32,7 +33,7 @@ class App extends Component{
 
           {/*Route to Machakos Golf Club Card*/}
           <Route path='/inputTable'>
-            <InputTable playerNum={this.state.playerNum} players={this.state.players} scoringSystem={this.state.scoringSystem} tournament={this.state.tournament} />
+            <InputTable cardOptions={this.state.cardOptions} playerNum={this.state.playerNum} players={this.state.players} scoringSystem={this.state.scoringSystem} tournament={this.state.tournament} />
           </Route>
 
           {/*Route to Generic Card*/}
