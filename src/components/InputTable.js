@@ -10,6 +10,15 @@ const CardSection = React.forwardRef((props, ref) =>(
             </h5>
 
             <p>{props.eventDate}</p>
+
+            <div className="d-flex justify-content-center">
+                <h4 style={{padding: "7px", margin: "10px 5px", fontWeight: "700"}}>Colour Key : </h4>
+                <p style={{backgroundColor: "red", padding: "7px", margin: "10px 5px"}}>Eagle or less</p>
+                <p style={{backgroundColor: "orange", padding: "7px", margin: "10px 5px"}}>Birdie</p>
+                <p style={{backgroundColor: "yellow", padding: "7px", margin: "10px 5px"}}>Par</p>
+                <p style={{backgroundColor: "blue", padding: "7px", margin: "10px 5px"}}>Bogey</p>
+                <p style={{backgroundColor: "grey", padding: "7px", margin: "10px 5px"}}>Double Bogey or more</p>
+            </div>
         </div>
         <div id="tableID" className="table-responsive">
             <table className="table">
