@@ -188,7 +188,7 @@ class inputForm extends Component{
 
                     {/*Card Type or Location section */}
                     <div className="row my-2 align-items-center">
-                    <div className="col-sm-4">
+                    <div className="col-4">
                             <div className="dropdown">
                                 <button type="button" className="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     Select Card
@@ -200,13 +200,7 @@ class inputForm extends Component{
                                 </ul>
                             </div>
                         </div>
-                        <div className="col-sm-8">
-                            {/* <input type="radio" className="btn-check" name="radio" id="genericRadio" autoComplete="off" required/>
-                            <label className="btn btn-outline-dark" htmlFor="genericRadio">Generic Card</label>
-
-                            <input type="radio" className="btn-check" name="radio" id="machakosRadio" autoComplete="off" required/>
-                            <label className="btn btn-outline-dark" htmlFor="machakosRadio">Machakos Golf Club Card</label> */}
-
+                        <div className="col-8 text-center">
                             {this.state.cardOptions.name}
                         </div>
                     </div>
