@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import localStorage from 'local-storage';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import GenericTable from './components/GenericTable';
 import InputForm from './components/inputForm';
@@ -8,11 +9,11 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state={
-      cardOptions: [],
-      playerNum: 0,
-      players: [],
-      scoringSystem: "",
-      tournament: "",
+      cardOptions: localStorage.get("cardOptions") || {id:0, name:"", holeColumn:[], siColumn:[], parColumn:[]},
+      playerNum: localStorage.get("playerNum") || 0,
+      players: localStorage.get("players") || [],
+      scoringSystem: localStorage.get("scoringSystem") || "",
+      tournament: localStorage.get("tournament") || ""
     }
   }
 

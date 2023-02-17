@@ -10,7 +10,7 @@ class inputForm extends Component{
     constructor(props){
         super(props)
         this.state={
-            cardOptions: localStorage.get("cardOptions") || [],
+            cardOptions: localStorage.get("cardOptions") || {id:0, name:"", holeColumn:[], siColumn:[], parColumn:[]},
             playerNum: localStorage.get("playerNum") || 0,
             players: localStorage.get("players") || [],
             scoringSystem: localStorage.get("scoringSystem") || "",

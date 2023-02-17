@@ -6,7 +6,7 @@ const CardSection = React.forwardRef((props, ref) =>(
     <div id="scorecard" ref={ref}>
         <div className="text-center">
             <h5>
-                <strong>{props.cardOptions.name.split(" ")[0]} {props.event+" "+props.scoringSystem} Format</strong>
+                <strong>{ props.cardOptions.name.split(" ")[0] } {props.event+" "+props.scoringSystem} Format</strong>
             </h5>
 
             <p>{props.eventDate}</p>
@@ -253,7 +253,6 @@ function rowOutput(i, j, players, strokeIndex, par, scoreSystem){
 function InputTable(props){
     const componentRef = useRef();
     const {cardOptions, playerNum, players, scoringSystem, tournament} = props;
-    
 
     //make all the words in tournament begin with capital letter.
     var tList = tournament.split(' ');
