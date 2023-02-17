@@ -48,8 +48,45 @@ const CardSection = React.forwardRef((props, ref) =>(
     </div>
 ));
 
+let inputCellStyle = {
+    width: "70px", 
+    border:"none", 
+    borderBottom:"3px solid black", 
+    textAlign:"center"
+}
+
+function checkScore(parScore, playerScore, inputCellId){
+    var scoreCalc = playerScore - parScore;
+
+    if(scoreCalc <= -2){
+        //console.log("red eagle");
+        document.getElementById(inputCellId).style.backgroundColor = "red";
+    }
+    else if(scoreCalc === -1){
+        //console.log("orange birdie");
+        document.getElementById(inputCellId).style.backgroundColor = "orange";
+    }
+    else if(scoreCalc === 0){
+        //console.log("yellow par ");
+        document.getElementById(inputCellId).style.backgroundColor = "yellow";
+    }
+    else if(scoreCalc === 1){
+        //console.log("blue bogey");
+        document.getElementById(inputCellId).style.backgroundColor = "blue";
+    }
+    else if(scoreCalc >= 2){
+        //console.log("grey double bogey or higher");
+        document.getElementById(inputCellId).style.backgroundColor = "grey";
+    }
+    else {
+        //console.log("transparent");
+        document.getElementById(inputCellId).style.backgroundColor = "transparent";
+    }
+}
+
 //the function is run when strokes input or removed from card
 function handleStrokesChange(i, j, players){
+    var parScore = localStorage.get("cardOptions").parColumn;
     var j_index = Math.trunc(Math.floor(j/2));
     var index=i, total=0, firstNine=0, secondNine=0;
     /*if(index>9){
@@ -76,6 +113,9 @@ function handleStrokesChange(i, j, players){
 
     localStorage.set("players", players);
     //console.log("players in strokes change :", players);
+    var inputCellId = players[j_index].name+index;
+
+    checkScore(parScore[index], players[j_index].strokes[index], inputCellId);
 
     document.getElementById(players[j_index].name+21).innerHTML = total;
     document.getElementById(players[j_index].name+9).innerHTML = firstNine;
@@ -196,7 +236,7 @@ function rowOutput(i, j, players, strokeIndex, par, scoreSystem){
         if(j===0 || j%2===0){
             return(
                 <td key={j}>
-                    <input type="text" defaultValue={players[jIndex].strokes[index]} onChange={()=>{handleStrokesChange(i, j, players); handleScoreChange(i, j, players, strokeIndex, par, scoreSystem)}} style={{width: "70px", border:"none", borderBottom:"3px solid black", textAlign:"center"}} id={players[jIndex].name+i}/>
+                    <input type="text" defaultValue={players[jIndex].strokes[index]} onChange={()=>{handleStrokesChange(i, j, players); handleScoreChange(i, j, players, strokeIndex, par, scoreSystem)}} style={inputCellStyle} id={players[jIndex].name+i}/>
                 </td>
             );
         }
@@ -224,7 +264,7 @@ function InputTable(props){
 
     var nDate = new Date();
     var eventDate = nDate.toDateString();
-    
+
     return(
         <div className="p-4">
             <CardSection 
