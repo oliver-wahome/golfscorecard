@@ -152,7 +152,7 @@ class inputForm extends Component{
                     {/*Card Type or Location section */}
                     <div className="row my-2 align-items-center">
                         <div className="col-sm-4">
-                            <p><strong>Select Scoring System:</strong></p>
+                            <p><strong>Select Card:</strong></p>
                         </div>
                         <div className="col-sm-8 btn-group" role="group" aria-label="radio toggle">
                             <input type="radio" className="btn-check" name="radio" id="genericRadio" autoComplete="off" required/>
@@ -170,14 +170,15 @@ class inputForm extends Component{
                         <label htmlFor="staticEmail" className="col-sm-4"><strong>Select the number of players :</strong></label>
                         {/* button group to select number of players on card*/}
                         <div className="col-sm-8 px-2">
-                            <div className="btn-group" role="group" aria-label="playerNumGroup">
-                                {[1, 2, 3, 4, 5, 6, 7, 8].map((e, i) => (
-                                    <button key={i} className="btn btn-dark" type="button" onClick={()=>{this.setPlayers({e})}}>{e}</button>
-                                ))}
-                                {/* <button className="btn btn-dark" type="button" onClick={()=>{this.setPlayers(1)}}>1</button>
-                                <button className="btn btn-dark" type="button" onClick={()=>{this.setPlayers(2)}}>2</button>
-                                <button className="btn btn-dark" type="button" onClick={()=>{this.setPlayers(3)}}>3</button>
-                                <button className="btn btn-dark" type="button" onClick={()=>{this.setPlayers(4)}}>4</button> */}
+                            <div className="dropdown">
+                                <button className="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    players
+                                </button>
+                                <ul className="dropdown-menu">
+                                    {[1, 2, 3, 4, 5, 6, 7, 8].map((e, i) => (
+                                        <li key={e} num={e}><button className="dropdown-item" key={e} num={e} onClick={()=>{this.setPlayers(e)}}>{e}</button></li>
+                                    ))}
+                                </ul>
                             </div>
                         </div>
                     </div>
