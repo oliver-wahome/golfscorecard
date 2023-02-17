@@ -10,7 +10,7 @@ class inputForm extends Component{
     constructor(props){
         super(props)
         this.state={
-            cardOptions: localStorage.get("cardOptions") || "",
+            cardOptions: localStorage.get("cardOptions") || [],
             playerNum: localStorage.get("playerNum") || 0,
             players: localStorage.get("players") || [],
             scoringSystem: localStorage.get("scoringSystem") || "",
@@ -54,9 +54,9 @@ class inputForm extends Component{
     }
 
     //set value for cardOptions in localStorage and state
-    setCard(cardName){
-        this.setState({cardOptions: cardName}, ()=>{
-            localStorage.set("cardOptions", cardName);
+    setCard(cardDetails){
+        this.setState({cardOptions: cardDetails}, ()=>{
+            localStorage.set("cardOptions", cardDetails);
         });
     }
 
@@ -130,10 +130,10 @@ class inputForm extends Component{
         //setting value for tournament in localStorage
         this.setState({tournament: eventName}, () =>{
             localStorage.set("tournament", eventName);
-            if(this.state.cardOptions !== "Generic Card"){
+            if(this.state.cardOptions.name !== "Generic Card"){
                 this.props.history.push('/inputTable');
             }
-            else if(this.state.cardOptions === "Generic Card"){
+            else if(this.state.cardOptions.name === "Generic Card"){
                 this.props.history.push('/genericTable');
             }
             
@@ -145,6 +145,35 @@ class inputForm extends Component{
     }
 
     render(){
+
+        let cardData = [
+            {
+                id: 1,
+                name: "Generic",
+                holeColumn: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "OUT",
+                            "10", "11", "12", "13", "14", "15", "16", "17", "18", "IN", "OUT", "TOTAL"],
+            },
+            {
+                id: 2,
+                name: "Machakos Golf Club",
+                holeColumn: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "OUT",
+                            "10", "11", "12", "13", "14", "15", "16", "17", "18", "IN", "OUT", "TOTAL"],
+                siColumn: ["9", "17", "7", "5", "13", "3", "1", "11", "15", "",
+                            "12", "18", "8", "6", "14", "4", "2", "10", "16", "", "", ""],
+                parColumn: ["5", "3", "4", "4", "4", "4", "4", "3", "5", "36",
+                            "5", "3", "4", "4", "4", "4", "4", "3", "5", "36", "36", "72"],
+            }, 
+            {
+                id: 3,
+                name: "Limuru Country Club",
+                holeColumn: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "OUT",
+                            "10", "11", "12", "13", "14", "15", "16", "17", "18", "IN", "OUT", "TOTAL"],
+                siColumn: ["3", "11", "9", "1", "17", "7", "13", "5", "15", "",
+                            "4", "16", "8", "2", "18", "6", "14", "10", "12", "", "", ""],
+                parColumn: ["4", "4", "5", "5", "3", "4", "3", "4", "4", "36",
+                            "4", "4", "4", "4", "3", "5", "3", "4", "5", "36", "36", "72"],
+            }
+        ]
 
         return(
             //form to input user details
@@ -165,8 +194,8 @@ class inputForm extends Component{
                                     Select Card
                                 </button>
                                 <ul className="dropdown-menu">
-                                    {["Generic Card", "Machakos Golf Club Card", "Limuru Country Club Card"].map((e, i) => (
-                                        <li key={i}><button type="button" className="dropdown-item" style={{cursor: "pointer"}} onClick={()=>{this.setCard(e)}}>{e}</button></li>
+                                    {[...cardData].map((e, i) => (
+                                        <li key={i}><button type="button" className="dropdown-item" style={{cursor: "pointer"}} onClick={()=>{this.setCard(e)}}>{e.name}</button></li>
                                     ))}
                                 </ul>
                             </div>
@@ -178,7 +207,7 @@ class inputForm extends Component{
                             <input type="radio" className="btn-check" name="radio" id="machakosRadio" autoComplete="off" required/>
                             <label className="btn btn-outline-dark" htmlFor="machakosRadio">Machakos Golf Club Card</label> */}
 
-                            {this.state.cardOptions}
+                            {this.state.cardOptions.name}
                         </div>
                     </div>
 

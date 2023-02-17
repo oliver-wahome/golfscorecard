@@ -8,7 +8,7 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state={
-      cardOptions: "",
+      cardOptions: [],
       playerNum: 0,
       players: [],
       scoringSystem: "",
@@ -38,7 +38,7 @@ class App extends Component{
 
           {/*Route to Generic Card*/}
           <Route path='/genericTable'>
-            <GenericTable playerNum={this.state.playerNum} players={this.state.players} tournament={this.state.tournament} />
+            <GenericTable cardOptions={this.state.cardOptions} playerNum={this.state.playerNum} players={this.state.players} tournament={this.state.tournament} />
           </Route>
 
         </Switch>
