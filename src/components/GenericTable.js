@@ -100,7 +100,7 @@ const CardSection = React.forwardRef((props, ref) =>(
                 <tbody>
                     {[...Array(22)].map((e, i) => (
                         <tr key={i} className={"text-center "+rowColour(i)}>
-                            <th scope="row">{props.holeColumn[i]}</th>
+                            <th scope="row">{props.cardOptions.holeColumn[i]}</th>
                             {[...Array(props.playerNum)].map((e, j) => (
                                 rowOutput(i, j, props.players)
                             ))}
@@ -114,7 +114,7 @@ const CardSection = React.forwardRef((props, ref) =>(
 
 function GenericTable(props){
     const componentRef = useRef();
-    const {playerNum, players, tournament} = props;
+    const {cardOptions, playerNum, players, tournament} = props;
     
 
     //make all the words in tournament begin with capital letter.
@@ -126,15 +126,12 @@ function GenericTable(props){
 
     var nDate = new Date();
     var eventDate = nDate.toDateString();
-    var holeColumn = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "OUT",
-                     "10", "11", "12", "13", "14", "15", "16", "17", "18", "IN", "OUT", "TOTAL"];
     
-
     return(
         <div className="p-4">
             <CardSection 
                 event={event} eventDate={eventDate} ref={componentRef} 
-                playerNum={playerNum} players={players} holeColumn={holeColumn}
+                playerNum={playerNum} players={players} cardOptions={cardOptions}
             />
             
             <div className="row mt-3">

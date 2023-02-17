@@ -130,10 +130,10 @@ class inputForm extends Component{
         //setting value for tournament in localStorage
         this.setState({tournament: eventName}, () =>{
             localStorage.set("tournament", eventName);
-            if(this.state.cardOptions.name !== "Generic Card"){
+            if(this.state.cardOptions.name !== "Generic"){
                 this.props.history.push('/inputTable');
             }
-            else if(this.state.cardOptions.name === "Generic Card"){
+            else if(this.state.cardOptions.name === "Generic"){
                 this.props.history.push('/genericTable');
             }
             
