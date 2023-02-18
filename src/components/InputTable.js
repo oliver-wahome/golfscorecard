@@ -5,7 +5,7 @@ import localStorage from 'local-storage';
 const CardSection = React.forwardRef((props, ref) =>(
     <div id="scorecard" ref={ref}>
         <div className="text-center">
-            <h5>
+            <h5 className="m-0 mt-3">
                 <strong>{ props.cardOptions.name.split(" ")[0] } {props.event+" "+props.scoringSystem} Format</strong>
             </h5>
 
