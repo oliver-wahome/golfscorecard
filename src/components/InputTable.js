@@ -9,16 +9,26 @@ const CardSection = React.forwardRef((props, ref) =>(
                 <strong>{ props.cardOptions.name.split(" ")[0] } {props.event+" "+props.scoringSystem} Format</strong>
             </h5>
 
-            <p className="m-2">{props.eventDate}</p>
+            <p className="m-0 my-2">{props.eventDate}</p>
 
-            <div className="d-md-flex justify-content-center">
-                <div className="col-md-4 p-0 m-0 d-flex justify-content-between">
-                    {/* <h4 style={{padding: "7px", margin: "10px 5px", fontWeight: "700"}}>Colour Key : </h4> */}
-                    <p className="col-3" style={{backgroundColor: "#ff4d4d", padding: "5px", margin: 0}}>&lt;= Eagle</p>
-                    <p className="col-2" style={{backgroundColor: "#ff9900", padding: "5px", margin: 0}}>Birdie</p>
-                    <p className="col-2" style={{backgroundColor: "yellow", padding: "5px", margin: 0}}>Par</p>
-                    <p className="col-2" style={{backgroundColor: "#85cdfd", padding: "5px", margin: 0}}>Bogey</p>
-                    <p className="col-3" style={{backgroundColor: "#d6d6c2", padding: "5px", margin: 0}}>&gt;= D.Bogey</p>
+            {/* Colour key section */}
+            <div className="d-lg-flex justify-content-center">
+                <div className="col-lg-6 p-0 m-0 d-flex justify-content-between">
+                    <p className="col-3 p-0 m-0 d-flex justify-content-center align-items-center" style={{backgroundColor: "#ff4d4d"}}>
+                        &lt;= Eagle
+                    </p>
+                    <p className="col-2 p-0 m-0 d-flex justify-content-center align-items-center" style={{backgroundColor: "#ff9900"}}>
+                        Birdie
+                    </p>
+                    <p className="col-2 p-0 m-0 d-flex justify-content-center align-items-center" style={{backgroundColor: "yellow"}}>
+                        Par
+                    </p>
+                    <p className="col-2 p-0 m-0 d-flex justify-content-center align-items-center" style={{backgroundColor: "#85cdfd"}}>
+                        Bogey
+                    </p>
+                    <p className="col-3 p-0 m-0 d-flex justify-content-center align-items-center" style={{backgroundColor: "#d6d6c2"}}>
+                        &gt;= D.Bogey
+                    </p>
                 </div>
             </div>
         </div>
@@ -59,6 +69,7 @@ const CardSection = React.forwardRef((props, ref) =>(
     </div>
 ));
 
+//function to specify the style of all stroke input fields
 function getInputCellStyle(playerIndex, strokeIndex){
     return {
         backgroundColor: localStorage.get("players")[playerIndex].strokesBg[strokeIndex],
@@ -69,13 +80,7 @@ function getInputCellStyle(playerIndex, strokeIndex){
     }
 }
 
-// let inputCellStyle = {
-//     width: "40px", 
-//     border:"none", 
-//     borderBottom:"3px solid black", 
-//     textAlign:"center"
-// }
-
+//This function is used to change the value of the strokesBg array in the players object array in localStorage
 function changeStrokesBg(parScore, playerScore, inputCellId, players, playerIndex, strokeIndex){
     //console.log(inputCellId);
     var scoreCalc = playerScore - parScore;
@@ -158,6 +163,7 @@ function handleStrokesChange(i, j, players){
     document.getElementById(players[j_index].name+19).innerHTML = secondNine;
 }
 
+//function to calculate the player's score from the format, stroke index and strokes for each hole
 function handleScoreChange(i, j, players, strokeIndex, par, scoreSystem){
     var j_index = Math.trunc(Math.floor(j/2));
     var index=i, totalScore=0, firstNineScore=0, secondNineScore=0;
@@ -301,13 +307,13 @@ function InputTable(props){
     var eventDate = nDate.toDateString();
 
     return(
-        <div className="p-4">
+        <div>
             <CardSection 
                 cardOptions={cardOptions} event={event} scoringSystem={scoringSystem} eventDate={eventDate} ref={componentRef} 
                 playerNum={playerNum} players={players} 
             />
             
-            <div className="row mt-3">
+            <div className="row m-0 mt-3">
                 <div className="col-6">
                     <a href="/" className="btn btn-dark btn-sm">Back</a>
                 </div>
