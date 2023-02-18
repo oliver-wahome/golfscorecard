@@ -3,37 +3,35 @@ import React, {useRef} from 'react';
 import localStorage from 'local-storage';
 
 const CardSection = React.forwardRef((props, ref) =>(
-    <div id="scorecard" ref={ref}>
-        <div className="text-center">
-            <h5 className="m-0 mt-3">
-                <strong>{ props.cardOptions.name.split(" ")[0] } {props.event+" "+props.scoringSystem} Format</strong>
-            </h5>
+    <div className="h-100" id="scorecard" ref={ref}>
+        <h5 className="m-0 mt-3 text-center">
+            <strong>{ props.cardOptions.name.split(" ")[0] } {props.event+" "+props.scoringSystem} Format</strong>
+        </h5>
 
-            <p className="m-0 my-2">{props.eventDate}</p>
+        <p className="m-0 my-2 text-center">{props.eventDate}</p>
 
-            {/* Colour key section */}
-            <div className="d-lg-flex justify-content-center">
-                <div className="col-lg-6 p-0 m-0 d-flex justify-content-between">
-                    <p className="col-3 p-0 m-0 d-flex justify-content-center align-items-center" style={{backgroundColor: "#ff4d4d"}}>
-                        &lt;= Eagle
-                    </p>
-                    <p className="col-2 p-0 m-0 d-flex justify-content-center align-items-center" style={{backgroundColor: "#ff9900"}}>
-                        Birdie
-                    </p>
-                    <p className="col-2 p-0 m-0 d-flex justify-content-center align-items-center" style={{backgroundColor: "yellow"}}>
-                        Par
-                    </p>
-                    <p className="col-2 p-0 m-0 d-flex justify-content-center align-items-center" style={{backgroundColor: "#85cdfd"}}>
-                        Bogey
-                    </p>
-                    <p className="col-3 p-0 m-0 d-flex justify-content-center align-items-center" style={{backgroundColor: "#d6d6c2"}}>
-                        &gt;= D.Bogey
-                    </p>
-                </div>
+        {/* Colour key section */}
+        <div className="d-lg-flex justify-content-center sticky-top">
+            <div className="col-lg-6 p-0 m-0 d-flex justify-content-between">
+                <p className="col-3 p-0 m-0 d-flex justify-content-center align-items-center" style={{backgroundColor: "#ff4d4d"}}>
+                    &lt;= Eagle
+                </p>
+                <p className="col-2 p-0 m-0 d-flex justify-content-center align-items-center" style={{backgroundColor: "#ff9900"}}>
+                    Birdie
+                </p>
+                <p className="col-2 p-0 m-0 d-flex justify-content-center align-items-center" style={{backgroundColor: "yellow"}}>
+                    Par
+                </p>
+                <p className="col-2 p-0 m-0 d-flex justify-content-center align-items-center" style={{backgroundColor: "#85cdfd"}}>
+                    Bogey
+                </p>
+                <p className="col-3 p-0 m-0 d-flex justify-content-center align-items-center" style={{backgroundColor: "#d6d6c2"}}>
+                    &gt;= D.Bogey
+                </p>
             </div>
         </div>
-        <div id="tableID" className="table-responsive">
-            <table className="table">
+        <div id="tableID" className="h-100 table-responsive">
+            <table className="table h-100">
                 <thead className="table-dark text-center">
                     <tr>
                         <th scope="col">Hole No.</th>
@@ -307,7 +305,7 @@ function InputTable(props){
     var eventDate = nDate.toDateString();
 
     return(
-        <div>
+        <div className="h-100">
             <CardSection 
                 cardOptions={cardOptions} event={event} scoringSystem={scoringSystem} eventDate={eventDate} ref={componentRef} 
                 playerNum={playerNum} players={players} 
