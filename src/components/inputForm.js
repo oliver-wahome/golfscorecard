@@ -76,7 +76,9 @@ class inputForm extends Component{
             for(var i=1; i<pNum+1; i++){
                 pList.push({id:i, name:e.target["playerName"+i].value, handicap:e.target["handicap"+i].value, 
                     strokes: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-                    score: ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
+                    score: ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"],
+                    strokesBg: ["transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+                                "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
                 });
             }
 
@@ -146,18 +148,21 @@ class inputForm extends Component{
 
     render(){
 
+        let holeColumnArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "OUT",
+                            "10", "11", "12", "13", "14", "15", "16", "17", "18", "IN", "OUT", "TOTAL"];
+        // let strokesBgArr = ["transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+        //                     "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"];
+
         let cardData = [
             {
                 id: 1,
                 name: "Generic",
-                holeColumn: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "OUT",
-                            "10", "11", "12", "13", "14", "15", "16", "17", "18", "IN", "OUT", "TOTAL"],
+                holeColumn: holeColumnArr
             },
             {
                 id: 2,
                 name: "Machakos Golf Club",
-                holeColumn: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "OUT",
-                            "10", "11", "12", "13", "14", "15", "16", "17", "18", "IN", "OUT", "TOTAL"],
+                holeColumn: holeColumnArr,
                 siColumn: ["9", "17", "7", "5", "13", "3", "1", "11", "15", "",
                             "12", "18", "8", "6", "14", "4", "2", "10", "16", "", "", ""],
                 parColumn: ["5", "3", "4", "4", "4", "4", "4", "3", "5", "36",
@@ -166,8 +171,7 @@ class inputForm extends Component{
             {
                 id: 3,
                 name: "Limuru Country Club",
-                holeColumn: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "OUT",
-                            "10", "11", "12", "13", "14", "15", "16", "17", "18", "IN", "OUT", "TOTAL"],
+                holeColumn: holeColumnArr,
                 siColumn: ["3", "11", "9", "1", "17", "7", "13", "5", "15", "",
                             "4", "16", "8", "2", "18", "6", "14", "10", "12", "", "", ""],
                 parColumn: ["4", "4", "5", "5", "3", "4", "3", "4", "4", "36",
@@ -176,8 +180,7 @@ class inputForm extends Component{
             {
                 id: 4,
                 name: "Railways Golf Club",
-                holeColumn: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "OUT",
-                            "10", "11", "12", "13", "14", "15", "16", "17", "18", "IN", "OUT", "TOTAL"],
+                holeColumn: holeColumnArr,
                 siColumn: ["3", "11", "5", "9", "17", "13", "1", "7", "15", "",
                             "4", "10", "2", "16", "18", "6", "14", "8", "12", "", "", ""],
                 parColumn: ["5", "4", "4", "3", "4", "3", "4", "4", "5", "36",

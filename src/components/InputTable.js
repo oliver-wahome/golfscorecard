@@ -11,13 +11,15 @@ const CardSection = React.forwardRef((props, ref) =>(
 
             <p className="m-2">{props.eventDate}</p>
 
-            <div className="p-0 m-0 d-flex justify-content-between">
-                {/* <h4 style={{padding: "7px", margin: "10px 5px", fontWeight: "700"}}>Colour Key : </h4> */}
-                <p style={{backgroundColor: "#ff4d4d", padding: "5px", margin: "5px 0"}}>Eagle or &lt;</p>
-                <p style={{backgroundColor: "#ff9900", padding: "5px", margin: "5px 0"}}>Birdie</p>
-                <p style={{backgroundColor: "yellow", padding: "5px", margin: "5px 0"}}>Par</p>
-                <p style={{backgroundColor: "#85cdfd", padding: "5px", margin: "5px 0"}}>Bogey</p>
-                <p style={{backgroundColor: "#d6d6c2", padding: "5px", margin: "5px 0"}}>D. Bogey or &gt;</p>
+            <div className="d-md-flex justify-content-center">
+                <div className="col-md-4 p-0 m-0 d-flex justify-content-between">
+                    {/* <h4 style={{padding: "7px", margin: "10px 5px", fontWeight: "700"}}>Colour Key : </h4> */}
+                    <p className="col-3" style={{backgroundColor: "#ff4d4d", padding: "5px", margin: 0}}>&lt;= Eagle</p>
+                    <p className="col-2" style={{backgroundColor: "#ff9900", padding: "5px", margin: 0}}>Birdie</p>
+                    <p className="col-2" style={{backgroundColor: "yellow", padding: "5px", margin: 0}}>Par</p>
+                    <p className="col-2" style={{backgroundColor: "#85cdfd", padding: "5px", margin: 0}}>Bogey</p>
+                    <p className="col-3" style={{backgroundColor: "#d6d6c2", padding: "5px", margin: 0}}>&gt;= D.Bogey</p>
+                </div>
             </div>
         </div>
         <div id="tableID" className="table-responsive">
@@ -57,45 +59,69 @@ const CardSection = React.forwardRef((props, ref) =>(
     </div>
 ));
 
-let inputCellStyle = {
-    width: "40px", 
-    border:"none", 
-    borderBottom:"3px solid black", 
-    textAlign:"center"
+function getInputCellStyle(playerIndex, strokeIndex){
+    return {
+        backgroundColor: localStorage.get("players")[playerIndex].strokesBg[strokeIndex],
+        width: "40px", 
+        border:"none",
+        borderBottom:"3px solid black", 
+        textAlign:"center"
+    }
 }
 
-function checkScore(parScore, playerScore, inputCellId){
+// let inputCellStyle = {
+//     width: "40px", 
+//     border:"none", 
+//     borderBottom:"3px solid black", 
+//     textAlign:"center"
+// }
+
+function changeStrokesBg(parScore, playerScore, inputCellId, players, playerIndex, strokeIndex){
+    //console.log(inputCellId);
     var scoreCalc = playerScore - parScore;
 
     if(scoreCalc <= -2 && scoreCalc > (parScore*-1)){
         //console.log("red eagle");
         document.getElementById(inputCellId).style.backgroundColor = "#ff4d4d";
+        players[playerIndex].strokesBg[strokeIndex] = "#ff4d4d";
+        localStorage.set("players", players);
     }
     else if(scoreCalc === -1){
         //console.log("orange birdie");
         document.getElementById(inputCellId).style.backgroundColor = "#ff9900";
+        players[playerIndex].strokesBg[strokeIndex] = "#ff9900";
+        localStorage.set("players", players);
     }
     else if(scoreCalc === 0){
         //console.log("yellow par ");
         document.getElementById(inputCellId).style.backgroundColor = "yellow";
+        players[playerIndex].strokesBg[strokeIndex] = "yellow";
+        localStorage.set("players", players);
     }
     else if(scoreCalc === 1){
         //console.log("blue bogey");
-        document.getElementById(inputCellId).style.backgroundColor = "#85CDFD";
+        document.getElementById(inputCellId).style.backgroundColor = "#85cdfd";
+        players[playerIndex].strokesBg[strokeIndex] = "#85cdfd";
+        localStorage.set("players", players);
     }
     else if(scoreCalc >= 2){
         //console.log("grey double bogey or higher");
         document.getElementById(inputCellId).style.backgroundColor = "#d6d6c2";
+        players[playerIndex].strokesBg[strokeIndex] = "#d6d6c2";
+        localStorage.set("players", players);
     }
     else {
         //console.log("transparent");
         document.getElementById(inputCellId).style.backgroundColor = "transparent";
+        players[playerIndex].strokesBg[strokeIndex] = "transparent";
+        localStorage.set("players", players);
     }
 }
 
 //the function is run when strokes input or removed from card
 function handleStrokesChange(i, j, players){
-    var parScore = localStorage.get("cardOptions").parColumn;
+    var currCardOptions = localStorage.get("cardOptions");
+    var parScore = currCardOptions.parColumn;
     var j_index = Math.trunc(Math.floor(j/2));
     var index=i, total=0, firstNine=0, secondNine=0;
     /*if(index>9){
@@ -124,7 +150,7 @@ function handleStrokesChange(i, j, players){
     //console.log("players in strokes change :", players);
     var inputCellId = players[j_index].name+index;
 
-    checkScore(parScore[index], players[j_index].strokes[index], inputCellId);
+    changeStrokesBg(parScore[index], players[j_index].strokes[index], inputCellId, players, j_index, index);
 
     document.getElementById(players[j_index].name+21).innerHTML = total;
     document.getElementById(players[j_index].name+9).innerHTML = firstNine;
@@ -245,7 +271,9 @@ function rowOutput(i, j, players, strokeIndex, par, scoreSystem){
         if(j===0 || j%2===0){
             return(
                 <td key={j}>
-                    <input type="text" defaultValue={players[jIndex].strokes[index]} onChange={()=>{handleStrokesChange(i, j, players); handleScoreChange(i, j, players, strokeIndex, par, scoreSystem)}} style={inputCellStyle} id={players[jIndex].name+i}/>
+                    <input type="text" defaultValue={players[jIndex].strokes[index]} onChange={()=>{handleStrokesChange(i, j, players); handleScoreChange(i, j, players, strokeIndex, par, scoreSystem)}} style={getInputCellStyle(jIndex, index)} id={players[jIndex].name+i}/>
+                    {/* { changeStrokesBg(cardOptions.parColumn[index], players[jIndex].strokes[index], `${players[jIndex].name}${i}` ) } */}
+                    {/* { console.log(`${players[jIndex].name}${i}`) } */}
                 </td>
             );
         }
@@ -254,7 +282,6 @@ function rowOutput(i, j, players, strokeIndex, par, scoreSystem){
                 <td key={j} id={players[jIndex].name+"Score"+i}>{players[jIndex].score[index]}</td>
             );
         }
-        
     }
 }
 
