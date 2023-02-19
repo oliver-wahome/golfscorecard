@@ -31,7 +31,7 @@ const CardSection = React.forwardRef((props, ref) =>(
                 </p>
             </div>
         </div>
-        <div id="tableID" className="h-100 table-responsive">
+        <div id="tableID" className="h-100 table-responsive" data-mdb-perfect-scrollbar="true" style={{position: "relative", height: "100%"}}>
             <table id="scorecardTable" className="table h-100">
                 <thead className="table-dark text-center">
                     <tr id="nameTableHeader">

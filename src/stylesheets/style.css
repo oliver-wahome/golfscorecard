@@ -7,3 +7,9 @@
     top: 0;
     width: 100%;
 }
+
+.table-sticky th {
+    position: sticky;
+    top: -1px;
+    z-index: 990;
+}
