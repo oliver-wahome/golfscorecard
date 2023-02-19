@@ -1,6 +1,7 @@
 import {exportComponentAsPNG} from 'react-component-export-image';
 import React, {useRef} from 'react';
 import localStorage from 'local-storage';
+import '../stylesheets/style.css';
 
 const CardSection = React.forwardRef((props, ref) =>(
     <div className="h-100" id="scorecard" ref={ref}>
@@ -31,9 +32,9 @@ const CardSection = React.forwardRef((props, ref) =>(
             </div>
         </div>
         <div id="tableID" className="h-100 table-responsive">
-            <table className="table h-100">
+            <table id="scorecardTable" className="table h-100">
                 <thead className="table-dark text-center">
-                    <tr>
+                    <tr id="nameTableHeader">
                         <th scope="col">Hole No.</th>
                         <th scope="col">Stroke Index</th> 
                         <th scope="col">Par</th>
@@ -66,6 +67,34 @@ const CardSection = React.forwardRef((props, ref) =>(
         </div>
     </div>
 ));
+
+
+/**
+ * Do not uncomment until you find a smooth way of scrolling on phone
+ * Also if it works don't forget to add the code below in the inputTable function
+ * 
+ * useEffect(() => {
+ *     makeTableHeaderSticky();
+ * });
+ * 
+ */
+// function makeTableHeaderSticky(){
+//     var header = document.getElementById("nameTableHeader");
+//     var table = document.getElementById("tableID");
+
+//     window.addEventListener('scroll', () => {
+//         if(table && header){
+//             var coordinates = table.getBoundingClientRect();
+//             if(coordinates.y < 0){
+//                 header.style.transform = 'translate3d(0, ' + (-coordinates.y) + 'px, 0)';
+//             }
+//             else {
+//                 header.style.transform = 'translate3d(0,0,0)';
+//             }
+//         }
+//     });
+// }
+
 
 //function to specify the style of all stroke input fields
 function getInputCellStyle(playerIndex, strokeIndex){
@@ -306,7 +335,7 @@ function InputTable(props){
 
     return(
         <div className="h-100">
-            <CardSection 
+            <CardSection
                 cardOptions={cardOptions} event={event} scoringSystem={scoringSystem} eventDate={eventDate} ref={componentRef} 
                 playerNum={playerNum} players={players} 
             />
