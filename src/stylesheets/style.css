@@ -2,14 +2,8 @@
     overflow: hidden;
 }
 
-.sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-.table-sticky th {
+.stickyHeader {
     position: sticky;
-    top: -1px;
-    z-index: 990;
+    top: 0;
+    /* z-index: 10; */
 }
