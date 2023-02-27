@@ -34,18 +34,18 @@ const CardSection = React.forwardRef((props, ref) =>(
         <div id="tableID" className="h-100 table-responsive" data-mdb-perfect-scrollbar="true">
             <table id="scorecardTable" className="table h-100">
                 <thead className="table-dark text-center">
-                    <tr className="stickyHeader" id="nameTableHeader">
-                        <th scope="col">Hole</th>
-                        <th scope="col">S.I.</th> 
-                        <th scope="col">Par</th>
+                    <tr id="nameTableHeader">
+                        <th></th>
+                        <th></th> 
+                        <th></th>
                         {[...Array(props.playerNum)].map((e, i) => (
                             <th scope="col" colSpan="2" key={i}>{props.players[i].name+" ("+props.players[i].handicap+")"}</th>
                         ))}
                     </tr>
                     <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th>Hole</th>
+                        <th>S.I.</th>
+                        <th>Par</th>
                         {[...Array(props.playerNum*2)].map((e, i) => (
                             <th scope="col" key={i}>{rowHeader(i)}</th>
                         ))}
