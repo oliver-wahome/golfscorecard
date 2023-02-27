@@ -102,7 +102,9 @@ function getInputCellStyle(playerIndex, strokeIndex){
         backgroundColor: localStorage.get("players")[playerIndex].strokesBg[strokeIndex],
         width: "40px", 
         border:"none",
-        borderBottom:"3px solid black", 
+        // borderBottom:"3px solid black",
+        // borderRight:"3px solid black",
+        boxShadow: "2px 2px 2px 0px rgb(0, 0, 0, 0.60)",
         textAlign:"center"
     }
 }
