@@ -55,7 +55,7 @@ const CardSection = React.forwardRef((props, ref) =>(
                     {[...Array(22)].map((e, i) => (
                         <tr key={i} className="text-center" style={{backgroundColor: rowColour(i)}}>
                             <th scope="row">{props.cardOptions.holeColumn[i]}</th>
-                            <td className="text-center">{props.cardOptions.siColumn[i]}</td>
+                            <td className="text-center" style={{backgroundColor: siColour(i)}}>{props.cardOptions.siColumn[i]}</td>
                             <td>{props.cardOptions.parColumn[i]}</td>
                             {[...Array(props.playerNum*2)].map((e, j) => (
                                 rowOutput(i, j, props.players, props.cardOptions.siColumn[i], props.cardOptions.parColumn[i], props.scoringSystem)
@@ -256,6 +256,16 @@ function handleScoreChange(i, j, players, strokeIndex, par, scoreSystem){
     document.getElementById(players[j_index].name+"Score"+9).innerHTML = firstNineScore;
     document.getElementById(players[j_index].name+"Score"+20).innerHTML = firstNineScore;
     document.getElementById(players[j_index].name+"Score"+19).innerHTML = secondNineScore;
+}
+
+//sets the background colours for the si column
+function siColour(x){
+    if(x===9 || x===19 || x===20 || x===21){
+        return "";
+    }
+    else{
+        return "#e6ffee";
+    }
 }
 
 //the sets colours for certain rows
