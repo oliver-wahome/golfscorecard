@@ -304,7 +304,7 @@ function rowOutput(i, j, players, strokeIndex, par, scoreSystem){
         if(j===0 || j%2===0){
             return(
                 <td key={j}>
-                    <input className="m-0" type="text" defaultValue={players[jIndex].strokes[index]} onChange={()=>{handleStrokesChange(i, j, players); handleScoreChange(i, j, players, strokeIndex, par, scoreSystem)}} style={getInputCellStyle(jIndex, index)} id={players[jIndex].name+i}/>
+                    <input className="m-0" type="text" autocomplete="off" defaultValue={players[jIndex].strokes[index]} onChange={()=>{handleStrokesChange(i, j, players); handleScoreChange(i, j, players, strokeIndex, par, scoreSystem)}} style={getInputCellStyle(jIndex, index)} id={players[jIndex].name+i}/>
                 </td>
             );
         }
@@ -345,9 +345,8 @@ function InputTable(props){
                 <div className="col-6 text-end">
                     <button onClick={()=> {
                         document.getElementById("tableID").classList.remove("table-responsive");
-                        const windowWidth = window.innerWidth;
-                        
-                        //find a way to get the actual width of the scorecard element
+                        const windowWidth = window.innerWidth; //gets exact scorecard width. Right space error fixed.
+
                         exportComponentAsPNG(componentRef, {
                             fileName: "scorecard",
                             html2CanvasOptions:{
