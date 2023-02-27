@@ -12,7 +12,7 @@ const CardSection = React.forwardRef((props, ref) =>(
         <p className="m-0 my-2 text-center">{props.eventDate}</p>
 
         {/* Colour key section */}
-        <div className="d-lg-flex justify-content-center sticky-top">
+        <div className="d-lg-flex justify-content-center">
             <div className="col-lg-6 p-0 m-0 d-flex justify-content-between">
                 <p className="col-3 p-0 m-0 d-flex justify-content-center align-items-center" style={{backgroundColor: "#ff4d4d"}}>
                     &lt;= Eagle
@@ -32,7 +32,7 @@ const CardSection = React.forwardRef((props, ref) =>(
             </div>
         </div>
         <div id="tableID" className="h-100 table-responsive" data-mdb-perfect-scrollbar="true">
-            <table id="scorecardTable" className="table table-bordered h-100">
+            <table id="scorecardTable" className="table h-100">
                 <thead className="table-dark text-center">
                     <tr className="stickyHeader" id="nameTableHeader">
                         <th scope="col">Hole</th>
@@ -100,9 +100,9 @@ const CardSection = React.forwardRef((props, ref) =>(
 function getInputCellStyle(playerIndex, strokeIndex){
     return {
         backgroundColor: localStorage.get("players")[playerIndex].strokesBg[strokeIndex],
-        // width: "40px", 
+        width: "40px", 
         border:"none",
-        // borderBottom:"3px solid black", 
+        borderBottom:"3px solid black", 
         textAlign:"center"
     }
 }
@@ -291,26 +291,26 @@ function rowOutput(i, j, players, strokeIndex, par, scoreSystem){
     if(i===9 || i>=19 ){
         if(j===0 || j%2===0){
             return(
-                <td colSpan="1" key={j} id={players[jIndex].name+i}>{players[jIndex].strokes[i]}</td>
+                <td key={j} id={players[jIndex].name+i}>{players[jIndex].strokes[i]}</td>
             );
         }
         else{
             return(
-                <td colSpan="1" key={j} id={players[jIndex].name+"Score"+i}>{players[jIndex].score[i]}</td>
+                <td key={j} id={players[jIndex].name+"Score"+i}>{players[jIndex].score[i]}</td>
             );
         }
     }
     else{
         if(j===0 || j%2===0){
             return(
-                <td colSpan="1" className="p-0 m-0" key={j}>
-                    <input className="m-0 h-100 w-100" type="text" defaultValue={players[jIndex].strokes[index]} onChange={()=>{handleStrokesChange(i, j, players); handleScoreChange(i, j, players, strokeIndex, par, scoreSystem)}} style={getInputCellStyle(jIndex, index)} id={players[jIndex].name+i}/>
+                <td key={j}>
+                    <input className="m-0" type="text" defaultValue={players[jIndex].strokes[index]} onChange={()=>{handleStrokesChange(i, j, players); handleScoreChange(i, j, players, strokeIndex, par, scoreSystem)}} style={getInputCellStyle(jIndex, index)} id={players[jIndex].name+i}/>
                 </td>
             );
         }
         else{
             return(
-                <td colSpan="1" className="" key={j} id={players[jIndex].name+"Score"+i}>{players[jIndex].score[index]}</td>
+                <td key={j} id={players[jIndex].name+"Score"+i}>{players[jIndex].score[index]}</td>
             );
         }
     }

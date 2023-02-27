@@ -150,8 +150,6 @@ class inputForm extends Component{
 
         let holeColumnArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "OUT",
                             "10", "11", "12", "13", "14", "15", "16", "17", "18", "IN", "OUT", "TOTAL"];
-        // let strokesBgArr = ["transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
-        //                     "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"];
 
         let cardData = [
             {
@@ -185,6 +183,24 @@ class inputForm extends Component{
                             "4", "10", "2", "16", "18", "6", "14", "8", "12", "", "", ""],
                 parColumn: ["5", "4", "4", "3", "4", "3", "4", "4", "5", "36",
                             "5", "4", "4", "3", "4", "3", "5", "3", "5", "36", "36", "72"],
+            },
+            {
+                id: 5,
+                name: "Ruiru Sports Club",
+                holeColumn: holeColumnArr,
+                siColumn: ["6", "16", "14", "2", "12", "18", "4", "8", "10", "",
+                            "7", "13", "3", "17", "1", "15", "5", "11", "9", "", "", ""],
+                parColumn: ["4", "5", "3", "4", "4", "3", "4", "4", "5", "36",
+                            "5", "3", "4", "4", "5", "3", "5", "4", "4", "36", "36", "72"],
+            },
+            {
+                id: 6,
+                name: "Thika Sports Club",
+                holeColumn: holeColumnArr,
+                siColumn: ["6", "18", "8", "16", "2", "4", "12", "10", "14", "",
+                            "3", "15", "7", "13", "9", "11", "17", "1", "5", "", "", ""],
+                parColumn: ["5", "4", "4", "3", "4", "3", "4", "4", "5", "36",
+                            "5", "3", "4", "4", "4", "5", "3", "4", "4", "36", "36", "72"],
             }
         ]
 
