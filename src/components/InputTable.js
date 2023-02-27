@@ -345,12 +345,13 @@ function InputTable(props){
                 <div className="col-6 text-end">
                     <button onClick={()=> {
                         document.getElementById("tableID").classList.remove("table-responsive");
-                        const scoreWidth = (165*(playerNum-1)) + document.getElementById("scorecard").clientWidth;
+                        const windowWidth = window.innerWidth;
+                        
                         //find a way to get the actual width of the scorecard element
                         exportComponentAsPNG(componentRef, {
                             fileName: "scorecard",
                             html2CanvasOptions:{
-                                width: scoreWidth,
+                                width: windowWidth,
                             }
                         });
                         document.getElementById("tableID").classList.add("table-responsive");
