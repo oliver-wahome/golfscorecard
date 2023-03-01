@@ -102,9 +102,9 @@ function getInputCellStyle(playerIndex, strokeIndex){
         backgroundColor: localStorage.get("players")[playerIndex].strokesBg[strokeIndex],
         width: "40px", 
         border:"none",
-        // borderBottom:"3px solid black",
-        // borderRight:"3px solid black",
-        boxShadow: "2px 2px 2px 0px rgb(0, 0, 0, 0.80)",
+        borderBottom:"2px solid rgba(0, 0, 0, 0.80)",
+        borderRight:"2px solid rgba(0, 0, 0, 0.80)",
+        // boxShadow: "2px 2px 3px 0px rgba(0, 0, 0, 0.80)",
         textAlign:"center"
     }
 }
@@ -358,11 +358,10 @@ function InputTable(props){
                     <button onClick={()=> {
                         document.getElementById("tableID").classList.remove("table-responsive");
                         const windowWidth = window.innerWidth; //gets exact scorecard width. Right space error fixed.
-                        let fileName = "scorecard-"+eventDate.split(" ").join("-")+"-"+nDate.toLocaleTimeString();
-                        console.log(fileName);
+                        let pngFileName = "scorecard-"+eventDate.split(" ").join("-")+"-"+nDate.toLocaleTimeString();
 
                         exportComponentAsPNG(componentRef, {
-                            fileName: fileName,
+                            fileName: pngFileName,
                             html2CanvasOptions:{
                                 width: windowWidth,
                             }
