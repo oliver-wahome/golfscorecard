@@ -358,7 +358,7 @@ function InputTable(props){
                     <button onClick={()=> {
                         document.getElementById("tableID").classList.remove("table-responsive");
                         const windowWidth = window.innerWidth; //gets exact scorecard width. Right space error fixed.
-                        let fileName = "scorecard-"+eventDate.split(" ").join("-");
+                        let fileName = "scorecard-"+eventDate.split(" ").join("-")+"-"+nDate.toLocaleTimeString();
                         console.log(fileName);
 
                         exportComponentAsPNG(componentRef, {
