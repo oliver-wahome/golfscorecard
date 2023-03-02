@@ -5,7 +5,7 @@ import '../stylesheets/style.css';
 
 const CardSection = React.forwardRef((props, ref) =>(
     <div className="h-100" id="scorecard" ref={ref}>
-        <h5 className="m-0 mt-3 text-center">
+        <h5 className="m-0 pt-3 text-center">
             <strong>{ props.cardOptions.name.split(" ")[0] } {props.event+" "+props.scoringSystem} Format</strong>
         </h5>
 
@@ -315,7 +315,7 @@ function rowOutput(i, j, players, strokeIndex, par, scoreSystem){
     else{
         if(j===0 || j%2===0){
             return(
-                <td key={j}>
+                <td className="position-relative" key={j}>
                     <input className="m-0" type="text" autoComplete="off" defaultValue={players[jIndex].strokes[index]} onChange={()=>{handleStrokesChange(i, j, players); handleScoreChange(i, j, players, strokeIndex, par, scoreSystem)}} style={getInputCellStyle(jIndex, index)} id={players[jIndex].name+i}/>
                 </td>
             );
