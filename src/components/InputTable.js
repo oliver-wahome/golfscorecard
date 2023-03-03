@@ -70,6 +70,7 @@ const CardSection = React.forwardRef((props, ref) =>(
 
 
 /**
+ * 
  * Do not uncomment until you find a smooth way of scrolling on phone
  * Also if it works don't forget to add the code below in the inputTable function
  * 
