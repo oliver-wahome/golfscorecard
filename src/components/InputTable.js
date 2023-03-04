@@ -95,6 +95,7 @@ const CardSection = React.forwardRef((props, ref) =>(
 //         }
 //     });
 // }
+//
 
 
 //function to specify the style of all stroke input fields
