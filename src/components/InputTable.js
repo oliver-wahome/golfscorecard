@@ -106,7 +106,6 @@ function getInputCellStyle(playerIndex, strokeIndex){
         border:"none",
         borderBottom:"2px solid rgba(0, 0, 0, 0.80)",
         borderRight:"2px solid rgba(0, 0, 0, 0.80)",
-        // boxShadow: "2px 2px 3px 0px rgba(0, 0, 0, 0.80)",
         textAlign:"center"
     }
 }
