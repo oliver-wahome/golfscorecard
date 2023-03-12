@@ -231,7 +231,7 @@ class inputForm extends Component{
                     </h4>
                 </div>
 
-                <form className = "border border-dark rounded p-3" onSubmit={this.handleSubmit}>
+                <form className = "border border-dark rounded p-3 mb-3" onSubmit={this.handleSubmit}>
 
                     {/*Card Type or Location section */}
                     <div className="row my-2 align-items-center">
@@ -287,10 +287,10 @@ class inputForm extends Component{
                     <InputEvent event={this.state.tournament} />
 
 
-                    <button type="submit" className="btn btn-dark m-0 my-3">
+                    <button type="submit" className="btn btn-dark mt-3">
                         Submit
                     </button>
-                    <button onClick={this.clearData} type="button" className="float-end btn btn-outline-danger my-3">
+                    <button onClick={this.clearData} type="button" className="float-end btn btn-outline-danger mt-3">
                         Clear Data
                     </button>
                 </form>
