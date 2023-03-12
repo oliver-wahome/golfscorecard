@@ -351,7 +351,7 @@ function InputTable(props){
                 playerNum={playerNum} players={players} 
             />
             
-            <div className="row m-0 mt-3">
+            <div className="row m-0 my-2">
                 <div className="col-6">
                     <a href="/" className="btn btn-dark btn-sm">Back</a>
                 </div>
