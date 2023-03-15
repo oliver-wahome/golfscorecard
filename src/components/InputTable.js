@@ -356,20 +356,23 @@ function InputTable(props){
                     <a href="/" className="btn btn-dark btn-sm">Back</a>
                 </div>
                 <div className="col-6 text-end">
-                    <button onClick={()=> {
-                        document.getElementById("tableID").classList.remove("table-responsive");
-                        const windowWidth = window.innerWidth; //gets exact scorecard width. Right space error fixed.
-                        let golfCourse = cardOptions.name.split(" ")[0];
-                        let pngFileName = golfCourse +"Scorecard-"+eventDate.split(" ").join("-")+"-"+nDate.toLocaleTimeString();
+                    <button
+                        // onclick function that convert scorecard to downloadable png
+                        onClick={()=> {
+                            document.getElementById("tableID").classList.remove("table-responsive");
+                            const windowWidth = window.innerWidth; //gets exact scorecard width. Right space error fixed.
+                            let golfCourse = cardOptions.name.split(" ")[0];
+                            let pngFileName = golfCourse +"Scorecard-"+eventDate.split(" ").join("-")+"-"+nDate.toLocaleTimeString();
 
-                        exportComponentAsPNG(componentRef, {
-                            fileName: pngFileName,
-                            html2CanvasOptions:{
-                                width: windowWidth,
-                            }
-                        });
-                        document.getElementById("tableID").classList.add("table-responsive");
-                    }} className="btn btn-primary btn-sm">Download Scorecard</button>
+                            exportComponentAsPNG(componentRef, {
+                                fileName: pngFileName,
+                                html2CanvasOptions:{
+                                    width: windowWidth,
+                                }
+                            });
+                            document.getElementById("tableID").classList.add("table-responsive");
+                        }} 
+                    className="btn btn-primary btn-sm">Download Scorecard</button>
                 </div>
             </div>
         </div>
