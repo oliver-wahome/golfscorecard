@@ -353,7 +353,7 @@ function InputTable(props){
             
             <div className="row m-0 my-2">
                 <div className="col-6">
-                    <a href="/" className="btn btn-dark btn-sm">Back</a>
+                    <a href="/" className="btn btn-dark">Back</a>
                 </div>
                 <div className="col-6 text-end">
                     <button
@@ -372,7 +372,7 @@ function InputTable(props){
                             });
                             document.getElementById("tableID").classList.add("table-responsive");
                         }} 
-                    className="btn btn-primary btn-sm">Download Scorecard</button>
+                    className="btn btn-primary">Download Scorecard</button>
                 </div>
             </div>
         </div>
